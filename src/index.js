@@ -1,11 +1,16 @@
 const express = require("express");
-var usersRouter = require("./routes/users.js");
+const { User, Skills } = require("../models");
+const usersRouter = require("./routes/users.js");
+const skillsRouter = require("./routes/skills.js");
 
 const app = express();
-app.use("/users", usersRouter);
 
-app.get("/", (req, res, next) => {
-  res.send("Hello World!");
+app.use(express.json());
+app.use("/users", usersRouter);
+app.use("/skills", skillsRouter);
+
+app.get("/", async (req, res, next) => {
+  res.send("Hello world!");
 });
 
 const port = 3000;
