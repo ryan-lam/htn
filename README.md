@@ -1,13 +1,15 @@
-# htn
+# HTN backend
 
 ## Requirements
 
 - NodeJS
 - Bash
 
+---
+
 ## Starting server the first time
 
-Run the following in root dir:
+Run the following in root dir (might take ~30 sec to seed database):
 
 ```
 npm install
@@ -25,6 +27,8 @@ sh start.sh
 ```
 
 Server will be live on `http://localhost:3000`
+
+---
 
 ## API Endpoints
 
@@ -44,21 +48,21 @@ Return the user data for a specific user (with id of `userId`)
 
 Update a given user's data by accepting data in a JSON format and return the updated user data as the response
 
-| Request data | Required | Type  | Datatype                                  |
-| ------------ | -------- | ----- | ----------------------------------------- |
-| `userId`     | YES      | Param | A non-negative number as a string         |
-| `name`       | YES      | Body  | A name as a string                        |
-| `company`    | YES      | Body  | A company name as a string                |
-| `email`      | YES      | Body  | An email as a string                      |
-| `phone`      | YES      | Body  | A phone number as a string                |
-| `skills`     | YES      | Body  | An array with `Skill` objects (see below) |
+| Request data | Required | Type  | Datatype                                                                       |
+| ------------ | -------- | ----- | ------------------------------------------------------------------------------ |
+| `userId`     | YES      | Param | A non-negative number as a string                                              |
+| `name`       | YES      | Body  | A name as a string                                                             |
+| `company`    | YES      | Body  | A company name as a string                                                     |
+| `email`      | YES      | Body  | An email as a string                                                           |
+| `phone`      | YES      | Body  | A phone number as a string                                                     |
+| `Skills`     | YES      | Body  | An array with `Skill` objects (see below); Note the capitalization on "Skills" |
 
 #### `Skill` object
 
-| Attribute | Required | Datatype                          |
-| --------- | -------- | --------------------------------- |
-| `skill`   | YES      | A skill name as a string          |
-| `rating`  | YES      | A non-negative number as a string |
+| Attribute | Required | Datatype                            |
+| --------- | -------- | ----------------------------------- |
+| `skill`   | YES      | A skill name as a string            |
+| `rating`  | YES      | A non-negative number as an integer |
 
 ### `/skills` \[GET\]
 

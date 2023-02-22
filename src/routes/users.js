@@ -35,7 +35,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/:id", async (req, res, next) => {
   const { id } = req.params;
   console.log(typeof id);
-  const { name, company, email, phone, skills } = req.body;
+  const { name, company, email, phone, Skills: skills } = req.body;
   skills.forEach(async (s) => {
     const savedSkill = await Skills.findOne({
       where: {
@@ -45,14 +45,14 @@ router.post("/:id", async (req, res, next) => {
     });
     if (savedSkill) {
       savedSkill.rating = s.rating;
+      await savedSkill.save();
     } else {
       const user = await getUserById(id);
-      await user.createSkill({
+      const addUserSkill = await user.createSkill({
         skill: s.skill,
         rating: s.rating,
       });
     }
-    await savedSkill.save();
   });
   var user = await User.update(
     {
