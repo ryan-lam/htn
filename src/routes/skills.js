@@ -8,7 +8,7 @@ var router = express.Router();
 router.get("/", async (req, res, next) => {
   var { min_frequency, max_frequency } = req.query;
   min_frequency ??= 0;
-  max_frequency ??= 10;
+  max_frequency ??= 1000000;
   const [results, metadata] = await sequelize.query(
     `SELECT * FROM 
     (SELECT COUNT(skill) as frequency, skill as name FROM Skills GROUP BY skill) as skill_count 
